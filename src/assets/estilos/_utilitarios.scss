@@ -1,0 +1,34 @@
+// Estilos nesse arquivo são acessíveis para todas as páginas
+
+/* Centraliza o título corretamente
+Utilizar junto com o botão de voltar no header*/
+.centraliza-titulo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  pointer-events: none; /* Permite cliques nos elementos abaixo da div */
+
+  & ion-title {
+    pointer-events: auto; /* Habilita cliques no ion-title se necessário */
+  }
+}
+
+.titulo {
+  text-align: center;
+  color: #000;
+  font-weight: 600;
+}
+
+.subtitulo {
+  font-size: 18px;
+  color: #666;
+  text-align: center;
+  width: 100%;
+  font-weight: 600;
+  max-width: 30ch;
+  margin: 0 auto;
+}
