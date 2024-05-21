@@ -30,10 +30,29 @@ const routes: Routes = [
       },
       {
         path: 'conta',
-        loadChildren: () =>
-          import('../paginas/conta/conta.module').then(
-            (m) => m.ContaPageModule
-          ),
+        children: [
+          {
+            path: '',
+            loadChildren: () =>
+              import('../paginas/conta/conta/conta.module').then(
+                (m) => m.ContaPageModule
+              ),
+          },
+          {
+            path: 'cadastro',
+            loadChildren: () =>
+              import('../paginas/conta/cadastro/cadastro.module').then(
+                (m) => m.CadastroPageModule
+              ),
+          },
+          {
+            path: 'minhaconta',
+            loadChildren: () =>
+              import('../paginas/conta/minhaconta/minhaconta.module').then(
+                (m) => m.MinhacontaPageModule
+              ),
+          },
+        ],
       },
       {
         path: '',

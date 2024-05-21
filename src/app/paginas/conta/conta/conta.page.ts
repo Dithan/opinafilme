@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-conta',
@@ -6,7 +7,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./conta.page.scss'],
 })
 export class ContaPage implements OnInit {
-  constructor() {}
+  constructor(private navCtrl: NavController) {}
 
   ngOnInit() {}
+
+  /* NAVEGA PARA: CADASTRO */
+  navToCadastro() {
+    this.navCtrl.navigateForward('/tabs/conta/cadastro');
+  }
 }
