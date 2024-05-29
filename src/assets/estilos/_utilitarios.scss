@@ -18,6 +18,10 @@ ion-toolbar {
   --padding-bottom: 10px;
 }
 
+ion-content {
+  --padding: 10px;
+}
+
 /* Centraliza o título corretamente
 Utilizar junto com o botão de voltar no Toolbar*/
 .centraliza-titulo {
