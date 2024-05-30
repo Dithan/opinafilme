@@ -11,30 +11,33 @@
 </ion-header>
 
 <ion-content [fullscreen]="true" class="ion-text-center content-minha-conta">
-  <ion-img
+  <div class="container">
+    <ion-img
     src="https://media.licdn.com/dms/image/D4D03AQEWIs2_ALZ9NQ/profile-displayphoto-shrink_800_800/0/1676660585606?e=1722470400&v=beta&t=32NmulcEMArfN1KzRRd4nxw-00BEGwrG2TllFgJ2b-U"
     alt="Thiago Rocha"></ion-img>
 
-  <ion-list>
-    <ion-item>
-      <ion-input labelPlacement="floating" value="Thiago Rocha">
-        <div slot="label">Nome</div>
-      </ion-input>
-    </ion-item>
+    <ion-list>
+      <ion-item>
+        <ion-input labelPlacement="floating" value="Thiago Rocha">
+          <div slot="label">Nome</div>
+        </ion-input>
+      </ion-item>
 
-    <ion-item>
-      <ion-input labelPlacement="floating" value="thiago@gmail.com">
-        <div slot="label">E-mail</div>
-      </ion-input>
-    </ion-item>
+      <ion-item>
+        <ion-input labelPlacement="floating" value="thiago@gmail.com">
+          <div slot="label">E-mail</div>
+        </ion-input>
+      </ion-item>
 
-    <ion-item>
-      <ion-input labelPlacement="floating" value="********">
-        <div slot="label">Senha</div>
-      </ion-input>
-    </ion-item>
-  </ion-list>
+      <ion-item>
+        <ion-input labelPlacement="floating" value="********">
+          <div slot="label">Senha</div>
+        </ion-input>
+      </ion-item>
+    </ion-list>
 
-  <ion-button shape="round" color="primary">Atualizar Dados</ion-button>
+    <ion-button shape="round" color="primary">Atualizar Dados</ion-button>
+  </div>
+
 
 </ion-content>

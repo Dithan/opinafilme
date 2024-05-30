@@ -1,0 +1,35 @@
+.card-filme {
+  margin: 0;
+  width: 100%;
+  height: auto;
+
+  img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+
+  .filmes-card-content {
+    padding: 8px 8px 10px;
+  }
+
+  ion-card-title {
+    font-size: 14px;
+    margin-top: 5px;
+
+    /* Limita texto */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 10ch;
+  }
+
+  ion-card-subtitle {
+    font-size: 12px;
+    margin-top: 0;
+
+    ion-icon {
+      color: #eacb1c;
+    }
+  }
+}

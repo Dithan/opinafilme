@@ -6,6 +6,7 @@ import { FilmesPage } from './filmes.page';
 import { ExploreContainerComponentModule } from '../../explore-container/explore-container.module';
 
 import { FilmesPageRoutingModule } from './filmes-routing.module';
+import { CardFilmeComponent } from 'src/app/componentes/card-filme/card-filme.component';
 
 @NgModule({
   imports: [
@@ -15,6 +16,6 @@ import { FilmesPageRoutingModule } from './filmes-routing.module';
     ExploreContainerComponentModule,
     FilmesPageRoutingModule,
   ],
-  declarations: [FilmesPage],
+  declarations: [FilmesPage, CardFilmeComponent],
 })
 export class FilmesPageModule {}

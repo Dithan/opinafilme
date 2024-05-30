@@ -1,35 +1,11 @@
 .filmes-content {
+  .container {
+    padding-top: 10px;
+  }
 }
 
-.filmes-content .card-filme {
-  margin: 0;
-
-  img {
-    height: auto;
-    object-fit: contain;
-  }
-
-  .filmes-card-content {
-    padding: 8px 8px 10px;
-  }
-
-  ion-card-title {
-    font-size: 14px;
-    margin-top: 5px;
-
-    /* Limita texto */
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    max-width: 8ch;
-  }
-
-  ion-card-subtitle {
-    font-size: 12px;
-    margin-top: 0;
-
-    ion-icon {
-      color: #eacb1c;
-    }
-  }
+.filmes-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
 }
