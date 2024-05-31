@@ -6,6 +6,7 @@ import { PesquisarPage } from './pesquisar.page';
 import { ExploreContainerComponentModule } from '../../explore-container/explore-container.module';
 
 import { PesquisarPageRoutingModule } from './pesquisar-routing.module';
+import { CardFilmePesquisaComponent } from 'src/app/componentes/card-filme-pesquisa/card-filme-pesquisa.component';
 
 @NgModule({
   imports: [
@@ -15,6 +16,6 @@ import { PesquisarPageRoutingModule } from './pesquisar-routing.module';
     ExploreContainerComponentModule,
     PesquisarPageRoutingModule,
   ],
-  declarations: [PesquisarPage],
+  declarations: [PesquisarPage, CardFilmePesquisaComponent],
 })
 export class PesquisarPageModule {}

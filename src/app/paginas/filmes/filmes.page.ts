@@ -13,8 +13,10 @@ export class FilmesPage {
     this.geraFilmes();
   }
 
+  /* Carrega 12 filmes por vez, quando scroll, carrega mais 12 (alterar no for) */
   private geraFilmes() {
     const count = this.filmes.length + 1;
+    // Alterar offset aqui (i < 12)
     for (let i = 0; i < 12; i++) {
       this.filmes.push(`Item ${count + i}`);
     }

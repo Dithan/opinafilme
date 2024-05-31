@@ -1,0 +1,19 @@
+.pesquisa-header {
+  ion-toolbar {
+    --padding-top: 0;
+    --padding-bottom: 0;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+  }
+  ion-searchbar {
+    padding: 0;
+  }
+}
+
+.pesquisa-content {
+  .pesquisa-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+}

@@ -1,0 +1,54 @@
+.card-filme-pesquisa {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  margin: 0;
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+
+  img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+
+  .filmes-card-content {
+    padding: 20px 20px 20px;
+    margin: auto;
+  }
+
+  ion-card-title {
+    font-size: 18px;
+    margin-top: 5px;
+
+    /* Limita texto */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 16ch;
+  }
+
+  ion-card-subtitle {
+    font-size: 12px;
+    margin-top: 0;
+
+    ion-icon {
+      color: #eacb1c;
+    }
+  }
+
+  .filme-detalhe {
+    color: #8e8e8e;
+    margin-top: 5px;
+  }
+
+  .filme-resumo {
+    margin-top: 5px;
+    width: 100%; /* Ajuste a largura conforme necessário */
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 3; /* Limitar a 3 linhas */
+  }
+}
