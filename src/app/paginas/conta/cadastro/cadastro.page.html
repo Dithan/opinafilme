@@ -10,7 +10,54 @@
   </ion-toolbar>
 </ion-header>
 
+<!--
 <ion-content [fullscreen]="true">
-  <!-- navCriarConta() apenas navega para a página -->
+   navCriarConta() apenas navega para a página 
   <ion-button (click)="navCriarConta()">Criar conta</ion-button>
 </ion-content>
+-->
+
+<ion-content padding>
+  <form (ngSubmit)="submitForm()">
+    <ion-item>
+      <ion-label position="floating">Nome completo</ion-label>
+      <ion-input type="text" [(ngModel)]="nomeCompleto" name="nomeCompleto" required></ion-input>
+    </ion-item>
+    
+    <ion-item>
+      <ion-label position="floating">Endereço de e-mail</ion-label>
+      <ion-input type="email" [(ngModel)]="email" name="email" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Data de nascimento</ion-label>
+      <ion-input type="date" [(ngModel)]="dataNas" name="dataNas" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Genero</ion-label>
+      <ion-input type="Boolean" [(ngModel)]="Genero" name="Genero" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">CPF</ion-label>
+      <ion-input type="Number" [(ngModel)]="cpf" name="cpf" required></ion-input>
+    </ion-item>
+    
+    <ion-item>
+      <ion-label position="floating">Senha</ion-label>
+      <ion-input type="password" [(ngModel)]="senha" name="senha" required pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{4,6}$"
+         placeholder="Sua senha deve conter entre 4 e 6 caracteres"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Confirme sua Senha</ion-label>
+      <ion-input type="password" [(ngModel)]="confirmaSenha" name="confirmaSenha" required></ion-input>
+    </ion-item>
+    
+    <ion-button expand="block" type="submit" shape="round" color="primary">Registrar</ion-button>
+  </form>
+</ion-content>
+
+
+  
