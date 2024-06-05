@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController } from '@ionic/angular';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { LoadingController, NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-cadastro',
@@ -7,40 +8,63 @@ import { NavController } from '@ionic/angular';
   styleUrls: ['cadastro.page.scss'],
 })
 export class CadastroPage implements OnInit {
-  nomeCompleto: string = '';
-  email: string ='';
-  dataNas!: Date ;
-  Genero: string = '';
-  cpf!: string ;
-  senha: string = '';
-  confirmaSenha: string = '';
+  regForm: FormGroup;
+  confirmasenha: boolean = false;
 
-  constructor(private navCtrl: NavController) {}
+  constructor(
+    public formBuilder: FormBuilder,
+    public loadingCtrl: LoadingController,
+    public navCtrl: NavController
+  ) {}
 
   ngOnInit() {
-    const dataString = '31/05/2024'; // Exemplo de string no formato "dia/mês/ano"
-    const partes = dataString.split('/'); // Dividir a string em partes: dia, mês, ano
-    const dia = parseInt(partes[0], 10); // Converter o dia para número
-    const mes = parseInt(partes[1], 10) - 1; // Converter o mês para número (subtrair 1, pois os meses em JavaScript são baseados em zero)
-    const ano = parseInt(partes[2], 10); // Converter o ano para número
-
-    this.dataNas = new Date(ano, mes, dia); // Criar um objeto Date a partir das partes
-   }
-
-  navCriarConta(){
-    this.navCtrl.navigateForward('/tabs/conta/minhaconta')
+    // Valida Formulário
+    this.regForm = this.formBuilder.group({
+      fullname: ['', [Validators.required]],
+      email: [
+        '',
+        [
+          Validators.required,
+          Validators.email,
+          Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,}$'),
+        ],
+      ],
+      // Senha deve conter pelo menos um número, uma letra maiúscula e uma letra minúscula, e no mínimo 8 caracteres ou mais.
+      password: [
+        '',
+        [
+          Validators.pattern(
+            '^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z0-9$@$!%*?&]{8,}$'
+          ),
+          Validators.required,
+        ],
+      ],
+      confirmPassword: ['', Validators.required],
+    });
   }
-  
-  submitForm() {
-    // Aqui você submete o formulário, envia os dados para um servidor
-    console.log('Nome completo:', this.nomeCompleto);
-    console.log('E-mail:', this.email);
-    console.log('Data de Nascimento:', this.dataNas);
-    console.log('Genero:', this.Genero);
-    console.log('CPF:', this.cpf);
-    console.log('Senha:', this.senha);
-    console.log('Confirme sua Senha:', this.confirmaSenha);
-    // Adicione código para enviar os dados para o servidor ou qualquer outra ação que desejar
+
+  get errorControl() {
+    return this.regForm?.controls;
+  }
+
+  validatePasswords() {
+    const password = this.regForm.get('password').value;
+    const confirmPassword = this.regForm.get('confirmPassword').value;
+    this.confirmasenha = password === confirmPassword;
+  }
+
+  async signUp() {
+    const loading = await this.loadingCtrl.create();
+    await loading.present();
+    if (this.regForm?.valid && this.confirmasenha) {
+      // Direcionar dados para a criação de conta no servidor aqui (const user)
+      // const user = await this.authService.registerUser(email, password);
+      this.navCtrl.navigateForward('/tabs/conta/minhaconta');
+    }
+  }
+
+  /* APAGAR APÓS FINALIZAR BACKEND FORMULÁRIO -> NAVEGA PARA: MINHACONTA */
+  navMinhaConta() {
+    this.navCtrl.navigateForward('/tabs/conta/minhaconta');
   }
 }
-

@@ -5,59 +5,63 @@
     </ion-buttons>
 
     <div class="centraliza-titulo">
-      <ion-title class="titulo">Cadastro</ion-title>
+      <ion-title class="titulo">Cadastre-se</ion-title>
     </div>
   </ion-toolbar>
 </ion-header>
 
-<!--
-<ion-content [fullscreen]="true">
-   navCriarConta() apenas navega para a página 
-  <ion-button (click)="navCriarConta()">Criar conta</ion-button>
+<ion-content class="form-content">
+  <h1 class="titulo">Aproveite tudo que a <br>OpinaFilme<br> tem a oferecer</h1>
+
+  <div class="container">
+    <form [formGroup]="regForm" (ngSubmit)="signUp()">
+      <ion-item>
+        <ion-input formControlName="fullname" labelPlacement="floating">
+          <div slot="label">Nome Completo <ion-text color="danger">*</ion-text></div>
+        </ion-input>
+      </ion-item>
+      <div *ngIf="regForm.controls?.['fullname'].touched && regForm.controls?.['fullname'].invalid"
+        style="text-align: left;">
+        <ion-text *ngIf="regForm.controls?.['fullname'].errors?.['required']">Digite seu nome completo</ion-text>
+      </div>
+
+      <ion-item>
+        <ion-input formControlName="email" labelPlacement="floating" type="email">
+          <div slot="label">E-mail <ion-text color="danger">*</ion-text></div>
+        </ion-input>
+      </ion-item>
+      <div *ngIf="regForm.controls?.['email'].touched && regForm.controls?.['email'].invalid" style="text-align: left;">
+        <ion-text *ngIf="regForm.controls?.['email'].errors?.['required']">Digite seu e-mail</ion-text>
+        <ion-text *ngIf="regForm.controls?.['email'].errors?.['email']">Digite um e-mail válido</ion-text>
+      </div>
+
+      <ion-item>
+        <ion-input formControlName="password" labelPlacement="floating" type="password"
+          (ionInput)="validatePasswords()">
+          <div slot="label">Senha <ion-text color="danger">*</ion-text></div>
+        </ion-input>
+      </ion-item>
+      <div *ngIf="regForm.controls?.['password'].touched && regForm.controls?.['password'].invalid"
+        style="text-align: left;">
+        <ion-text *ngIf="regForm.controls?.['password'].errors?.['required']">Digite sua senha</ion-text>
+        <ion-text *ngIf="regForm.controls?.['password'].errors?.['pattern']">A senha deve conter pelo menos 1 número, 1
+          letra maiúscula, 1 letra minúscula e ter pelo menos 8 caracteres</ion-text>
+      </div>
+
+      <ion-item>
+        <ion-input formControlName="confirmPassword" labelPlacement="floating" type="password"
+          (ionInput)="validatePasswords()">
+          <div slot="label">Confirme a Senha <ion-text color="danger">*</ion-text></div>
+        </ion-input>
+      </ion-item>
+      <div *ngIf="regForm.controls?.['confirmPassword'].touched && regForm.controls?.['confirmPassword'].invalid"
+        style="text-align: left;">
+        <ion-text *ngIf="regForm.controls?.['confirmPassword'].errors?.['required']">Confirme sua senha</ion-text>
+        <ion-text *ngIf="!confirmasenha && regForm.controls?.['confirmPassword'].touched">As senhas não
+          correspondem</ion-text>
+      </div>
+
+      <ion-button type="submit" [disabled]="!confirmasenha">Criar conta</ion-button>
+    </form>
+  </div>
 </ion-content>
--->
-
-<ion-content padding>
-  <form (ngSubmit)="submitForm()">
-    <ion-item>
-      <ion-label position="floating">Nome completo</ion-label>
-      <ion-input type="text" [(ngModel)]="nomeCompleto" name="nomeCompleto" required></ion-input>
-    </ion-item>
-    
-    <ion-item>
-      <ion-label position="floating">Endereço de e-mail</ion-label>
-      <ion-input type="email" [(ngModel)]="email" name="email" required></ion-input>
-    </ion-item>
-
-    <ion-item>
-      <ion-label position="floating">Data de nascimento</ion-label>
-      <ion-input type="date" [(ngModel)]="dataNas" name="dataNas" required></ion-input>
-    </ion-item>
-
-    <ion-item>
-      <ion-label position="floating">Genero</ion-label>
-      <ion-input type="Boolean" [(ngModel)]="Genero" name="Genero" required></ion-input>
-    </ion-item>
-
-    <ion-item>
-      <ion-label position="floating">CPF</ion-label>
-      <ion-input type="Number" [(ngModel)]="cpf" name="cpf" required></ion-input>
-    </ion-item>
-    
-    <ion-item>
-      <ion-label position="floating">Senha</ion-label>
-      <ion-input type="password" [(ngModel)]="senha" name="senha" required pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{4,6}$"
-         placeholder="Sua senha deve conter entre 4 e 6 caracteres"></ion-input>
-    </ion-item>
-
-    <ion-item>
-      <ion-label position="floating">Confirme sua Senha</ion-label>
-      <ion-input type="password" [(ngModel)]="confirmaSenha" name="confirmaSenha" required></ion-input>
-    </ion-item>
-    
-    <ion-button expand="block" type="submit" shape="round" color="primary">Registrar</ion-button>
-  </form>
-</ion-content>
-
-
-  
