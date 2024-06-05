@@ -10,11 +10,11 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="form-content">
-  <h1 class="titulo">Aproveite tudo que a <br>OpinaFilme<br> tem a oferecer</h1>
-
+<ion-content class="form-content" [fullscreen]="true">
   <div class="container">
-    <form [formGroup]="regForm" (ngSubmit)="signUp()">
+    <h1 class="titulo">Aproveite tudo que a <br>OpinaFilme<br> tem a oferecer</h1>
+
+    <form [formGroup]="regForm">
       <ion-item>
         <ion-input formControlName="fullname" labelPlacement="floating">
           <div slot="label">Nome Completo <ion-text color="danger">*</ion-text></div>
@@ -57,11 +57,13 @@
       <div *ngIf="regForm.controls?.['confirmPassword'].touched && regForm.controls?.['confirmPassword'].invalid"
         style="text-align: left;">
         <ion-text *ngIf="regForm.controls?.['confirmPassword'].errors?.['required']">Confirme sua senha</ion-text>
+        <br>
         <ion-text *ngIf="!confirmasenha && regForm.controls?.['confirmPassword'].touched">As senhas não
           correspondem</ion-text>
       </div>
 
-      <ion-button type="submit" [disabled]="!confirmasenha">Criar conta</ion-button>
+      <!-- BOTÕES APENAS NAVEGAM ENTRE AS PÁGINAS, CRIAR METODO E EXCLUIR ESSE COMENTÁRIO -->
+      <ion-button [disabled]="!confirmasenha" type="submit" (click)="navToLogin()">Criar Conta</ion-button>
     </form>
   </div>
 </ion-content>

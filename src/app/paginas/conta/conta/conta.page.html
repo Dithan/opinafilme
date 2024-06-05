@@ -1,10 +1,48 @@
 <ion-header class="ion-no-border">
   <ion-toolbar>
-    <ion-title class="titulo">Login</ion-title>
+    <ion-buttons slot="primary" slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+
+    <div class="centraliza-titulo">
+      <ion-title class="titulo">Login</ion-title>
+    </div>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content class="login-content" [fullscreen]="true">
+  <div class="container">
+    <h1 class="titulo">Aproveite tudo que a <br>OpinaFilme<br> tem a oferecer</h1>
 
-  <ion-button (click)="navToCadastro()">Criar uma conta</ion-button>
+    <form [formGroup]="loginForm">
+      <ion-item>
+        <ion-input formControlName="email" labelPlacement="floating" type="email">
+          <div slot="label">E-mail <ion-text color="danger">*</ion-text></div>
+        </ion-input>
+      </ion-item>
+      <div *ngIf="loginForm.controls?.['email'].touched && loginForm.controls?.['email'].invalid"
+        style="text-align: left;">
+        <ion-text *ngIf="loginForm.controls?.['email'].errors?.['required']">Digite seu e-mail</ion-text>
+        <ion-text *ngIf="loginForm.controls?.['email'].errors?.['email']">Digite um e-mail válido</ion-text>
+      </div>
+
+      <ion-item>
+        <ion-input formControlName="password" labelPlacement="floating" type="password">
+          <div slot="label">Senha <ion-text color="danger">*</ion-text></div>
+        </ion-input>
+      </ion-item>
+      <div *ngIf="loginForm.controls?.['password'].touched && loginForm.controls?.['password'].invalid"
+        style="text-align: left;">
+        <ion-text *ngIf="loginForm.controls?.['password'].errors?.['required']">Digite sua senha</ion-text>
+        <ion-text *ngIf="loginForm.controls?.['password'].errors?.['pattern']">A senha deve conter pelo menos 1 número,
+          1
+          letra maiúscula, 1 letra minúscula e ter pelo menos 8 caracteres</ion-text>
+      </div>
+
+      <!-- BOTÕES APENAS NAVEGAM ENTRE AS PÁGINAS, CRIAR METODO E EXCLUIR ESSE COMENTÁRIO -->
+      <ion-button type="submit" (click)="navToMinhaConta()">Entrar</ion-button>
+      <br>
+      <ion-button type="submit" (click)="navToCadastro()">Criar Uma Conta</ion-button>
+    </form>
+  </div>
 </ion-content>

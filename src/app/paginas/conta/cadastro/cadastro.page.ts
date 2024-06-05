@@ -59,12 +59,12 @@ export class CadastroPage implements OnInit {
     if (this.regForm?.valid && this.confirmasenha) {
       // Direcionar dados para a criação de conta no servidor aqui (const user)
       // const user = await this.authService.registerUser(email, password);
-      this.navCtrl.navigateForward('/tabs/conta/minhaconta');
+      this.navCtrl.navigateForward('/tabs/conta');
     }
   }
 
   /* APAGAR APÓS FINALIZAR BACKEND FORMULÁRIO -> NAVEGA PARA: MINHACONTA */
-  navMinhaConta() {
-    this.navCtrl.navigateForward('/tabs/conta/minhaconta');
+  navToLogin() {
+    this.navCtrl.navigateForward('/tabs/conta');
   }
 }
