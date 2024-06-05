@@ -23,7 +23,7 @@ export class CardFilmeComponent implements OnInit {
   }
 
   /* NAVEGA PARA: Filme */
-  navToFilme() {
-    this.navCtrl.navigateForward('/tabs/filmes/filme');
+  navToFilme(itemId: string) {
+    this.navCtrl.navigateForward(`/tabs/filmes/filme/${itemId}`);
   }
 }
