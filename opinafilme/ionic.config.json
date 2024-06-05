@@ -1,7 +1,0 @@
-{
-  "name": "opinafilme",
-  "integrations": {
-    "capacitor": {}
-  },
-  "type": "angular"
-}
