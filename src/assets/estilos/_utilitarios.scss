@@ -22,6 +22,9 @@ ion-toolbar {
 .container {
   padding-left: 10px;
   padding-right: 10px;
+  max-width: 768px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* Centraliza o título corretamente
@@ -54,14 +57,16 @@ Utilizar junto com o botão de voltar no Toolbar*/
   text-align: center;
   color: #000;
   font-weight: 600;
+  font-size: 26px;
+}
+
+.titulo-header {
+  font-size: 18px;
 }
 
 .subtitulo {
   font-size: 18px;
   color: #666;
   text-align: center;
-  width: 100%;
   font-weight: 600;
-  max-width: 30ch;
-  margin: 0 auto;
 }

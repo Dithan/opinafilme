@@ -5,7 +5,7 @@
     </ion-buttons>
 
     <div class="centraliza-titulo">
-      <ion-title class="titulo">Login</ion-title>
+      <ion-title class="titulo titulo-header">Login</ion-title>
     </div>
   </ion-toolbar>
 </ion-header>
@@ -40,9 +40,11 @@
       </div>
 
       <!-- BOTÕES APENAS NAVEGAM ENTRE AS PÁGINAS, CRIAR METODO E EXCLUIR ESSE COMENTÁRIO -->
-      <ion-button type="submit" (click)="navToMinhaConta()">Entrar</ion-button>
-      <br>
-      <ion-button type="submit" (click)="navToCadastro()">Criar Uma Conta</ion-button>
+      <div class="btn-container">
+        <ion-button type="submit" (click)="navToMinhaConta()" shape="round" color="primary">Entrar</ion-button>
+        <span class="separador-btns">ou</span>
+        <ion-button type="submit" (click)="navToCadastro()" shape="round" color="primary">Criar Uma Conta</ion-button>
+      </div>
     </form>
   </div>
 </ion-content>
