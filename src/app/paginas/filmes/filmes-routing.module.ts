@@ -7,6 +7,10 @@ const routes: Routes = [
     path: '',
     component: FilmesPage,
   },
+  {
+    path: 'filme',
+    loadChildren: () => import('./filme/filme.module').then( m => m.FilmePageModule)
+  },
 ];
 
 @NgModule({

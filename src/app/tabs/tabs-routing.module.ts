@@ -9,10 +9,22 @@ const routes: Routes = [
     children: [
       {
         path: 'filmes',
-        loadChildren: () =>
-          import('../paginas/filmes/filmes.module').then(
-            (m) => m.FilmesPageModule
-          ),
+        children: [
+          {
+            path: '',
+            loadChildren: () =>
+              import('../paginas/filmes/filmes.module').then(
+                (m) => m.FilmesPageModule
+              ),
+          },
+          {
+            path: 'filme',
+            loadChildren: () =>
+              import('../paginas/filmes/filme/filme.module').then(
+                (m) => m.FilmePageModule
+              ),
+          },
+        ],
       },
       {
         path: 'pesquisar',
