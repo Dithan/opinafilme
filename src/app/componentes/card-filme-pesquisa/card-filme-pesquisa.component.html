@@ -1,10 +1,20 @@
 <ion-card class="card-filme-pesquisa" (click)="navToFilme(idFilme)">
-  <img alt="Silhouette of mountains"
+  <div *ngIf="posterFilme" >
+    <img alt="Silhouette of mountains"
     src="{{posterFilme}}" />
+  </div>
+  <div *ngIf="!posterFilme">
+    <p style="text-align: center;">Imagem Indisponível.</p>
+  </div>
   <div class="filmes-card-content">
     <ion-card-subtitle><ion-icon name="star"></ion-icon> 4.9</ion-card-subtitle>
     <ion-card-title>{{nomeFilme}}</ion-card-title>
     <div class="filme-detalhe">2204 16 1h 90m</div>
-    <div class="filme-resumo">{{bioFilme}}</div>
+    <div *ngIf="bioFilme" >
+        <div class="filme-resumo" >{{bioFilme}}</div>
+    </div>
+    <div *ngIf="!bioFilme" >
+      <div class="filme-resumo" >Descrição Indisponível.</div>
+  </div>
   </div>
 </ion-card>

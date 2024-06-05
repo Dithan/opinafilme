@@ -1,13 +1,13 @@
 <ion-header class="ion-no-border pesquisa-header">
   <ion-toolbar>
-    <ion-searchbar placeholder="Pesquise um Filme"></ion-searchbar>
+    <ion-searchbar placeholder="Pesquise um Filme" (ionInput)="onSearch($event)"></ion-searchbar>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true" class="pesquisa-content">
   <div class="container">
     <ion-list class="pesquisa-grid">
-      <app-card-filme-pesquisa *ngFor="let filme of filmes; let index"></app-card-filme-pesquisa>
+      <app-card-filme-pesquisa *ngFor="let filme of filmes" ></app-card-filme-pesquisa>
     </ion-list>
 
     <ion-infinite-scroll (ionInfinite)="onIonInfinite($event)">

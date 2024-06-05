@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { InfiniteScrollCustomEvent } from '@ionic/angular';
+import { InfiniteScrollCustomEvent, NavController } from '@ionic/angular';
+import { ApiIdService } from 'src/app/services/api-id.service';
 
 @Component({
   selector: 'app-pesquisar',
@@ -7,6 +8,8 @@ import { InfiniteScrollCustomEvent } from '@ionic/angular';
   styleUrls: ['pesquisar.page.scss'],
 })
 export class PesquisarPage {
+  constructor( public navCtrl: NavController,private apiserviceId : ApiIdService) { }
+
   filmes: any = [];
 
   ngOnInit() {
@@ -28,4 +31,20 @@ export class PesquisarPage {
       (ev as InfiniteScrollCustomEvent).target.complete();
     }, 500);
   }
+
+  onSearch(event: any) {
+    const query = event.target.value.toLowerCase();
+
+    console.log(query)
+   
+      this.apiserviceId.getDadosDaAPIId(query).subscribe(data => {
+        this.navCtrl.navigateForward(`/tabs/filmes/filme/${data.name}`)
+        console.log(data.name)
+        // this.nomeFilme = data.name;
+        // this.posterFilme = data.images[0].href;
+      });
+    ;
+  }
+
+
 }
