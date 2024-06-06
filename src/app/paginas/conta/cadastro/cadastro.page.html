@@ -14,7 +14,7 @@
   <div class="container">
     <h1 class="titulo">Aproveite tudo que a <br>OpinaFilme<br> tem a oferecer</h1>
 
-    <form [formGroup]="regForm">
+    <form [formGroup]="regForm" (ngSubmit)="signUp()">
       <ion-item>
         <ion-input formControlName="fullname" labelPlacement="floating">
           <div slot="label">Nome Completo <ion-text color="danger">*</ion-text></div>
@@ -63,7 +63,12 @@
       </div>
 
       <!-- BOTÕES APENAS NAVEGAM ENTRE AS PÁGINAS, CRIAR METODO E EXCLUIR ESSE COMENTÁRIO -->
-      <ion-button [disabled]="!confirmasenha" type="submit" (click)="navToLogin()">Criar Conta</ion-button>
+      <ion-button [disabled]="!confirmasenha" type="submit" shape="round" color="primary">Criar Conta</ion-button>
     </form>
+
+    <div class="btn-container">
+      <span class="separador-btns">ou</span>
+      <ion-button (click)="signUpWithGoogle()" shape="round" color="primary">Criar Conta com Google</ion-button>
+    </div>
   </div>
 </ion-content>

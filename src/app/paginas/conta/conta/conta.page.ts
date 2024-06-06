@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LoadingController, NavController } from '@ionic/angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from 'src/app/services/auth.service'; // Certifique-se de que o caminho está correto
 
 @Component({
   selector: 'app-conta',
@@ -13,7 +14,8 @@ export class ContaPage implements OnInit {
   constructor(
     public formBuilder: FormBuilder,
     public loadingCtrl: LoadingController,
-    private navCtrl: NavController
+    private navCtrl: NavController,
+    private authService: AuthService // Adiciona o serviço de autenticação
   ) {}
 
   ngOnInit() {
@@ -43,13 +45,23 @@ export class ContaPage implements OnInit {
     return this.loginForm?.controls;
   }
 
-  async signUp() {
+  async signIn() {
     const loading = await this.loadingCtrl.create();
     await loading.present();
     if (this.loginForm?.valid) {
-      // Valida Login
-      // const user = await this.authService.loginUser(email, password);
-      this.navCtrl.navigateForward('/tabs/conta/minhaconta');
+      const { email, password } = this.loginForm.value;
+      try {
+        await this.authService.login(email, password);
+        this.navCtrl.navigateForward('/tabs/conta/minhaconta');
+      } catch (error) {
+        console.error('Erro no login:', error);
+        // Adicione aqui um feedback ao usuário sobre o erro
+      } finally {
+        loading.dismiss();
+      }
+    } else {
+      console.log('Formulário inválido');
+      loading.dismiss();
     }
   }
 

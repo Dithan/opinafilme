@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LoadingController, NavController } from '@ionic/angular';
+import { AuthService } from 'src/app/services/auth.service'; // Certifique-se de que o caminho está correto
 
 @Component({
   selector: 'app-cadastro',
@@ -14,7 +15,8 @@ export class CadastroPage implements OnInit {
   constructor(
     public formBuilder: FormBuilder,
     public loadingCtrl: LoadingController,
-    public navCtrl: NavController
+    public navCtrl: NavController,
+    private authService: AuthService // Adiciona o serviço de autenticação
   ) {}
 
   ngOnInit() {
@@ -57,12 +59,34 @@ export class CadastroPage implements OnInit {
     const loading = await this.loadingCtrl.create();
     await loading.present();
     if (this.regForm?.valid && this.confirmasenha) {
-      // Direcionar dados para a criação de conta no servidor aqui (const user)
-      // const user = await this.authService.registerUser(email, password);
-      this.navCtrl.navigateForward('/tabs/conta');
+      const { email, password } = this.regForm.value;
+      try {
+        await this.authService.register(email, password);
+        this.navCtrl.navigateForward('/tabs/conta');
+      } catch (error) {
+        console.error('Erro no registro:', error);
+        // Adicione aqui um feedback ao usuário sobre o erro
+      } finally {
+        loading.dismiss();
+      }
+    } else {
+      console.log('Formulário inválido ou senhas não conferem');
+      loading.dismiss();
     }
   }
-
+  async signUpWithGoogle() {
+    const loading = await this.loadingCtrl.create();
+    await loading.present();
+    try {
+      await this.authService.googleSignIn();
+      this.navCtrl.navigateForward('/tabs/conta');
+    } catch (error) {
+      console.error('Erro no login com Google:', error);
+      // Adicione aqui um feedback ao usuário sobre o erro
+    } finally {
+      loading.dismiss();
+    }
+  }
   /* APAGAR APÓS FINALIZAR BACKEND FORMULÁRIO -> NAVEGA PARA: MINHACONTA */
   navToLogin() {
     this.navCtrl.navigateForward('/tabs/conta');
