@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import firebase from 'firebase/compat/app';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
   constructor(private afAuth: AngularFireAuth, private router: Router) {}
