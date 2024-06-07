@@ -3,11 +3,37 @@
 
 <ion-content [fullscreen]="true" class="filme-content">
   <figure class="banner">
-    <img alt="Silhouette of mountains"
-      src="{{posterFilme}}" />
+    <img alt="Silhouette of mountains" src="{{posterFilme}}" />
   </figure>
 
   <div class="container">
-{{nomeFilme}}
+    <div class="filme-header">
+
+      <div class="filme-titulos">
+        <h1>{{nomeFilme}}</h1>
+        <h2 class="infos">Exemplo: 2024 16 1h90m</h2>
+      </div>
+
+      <div class="filme-nota">
+        <ion-icon name="star"></ion-icon>
+        <div class="nota">Ex: <span>4.5</span>/5.0</div>
+      </div>
+    </div>
+
+    <div class="filme-sinopse">
+      <p>Exemplo: Lorem ipsum dolor sit, amet consectetur adipisicing elit. Deserunt quis
+        voluptatem, natus dolorem amet consequatur voluptates omnis eveniet deleniti. Adipisci rerum nemo sint velit
+        sequivel, veniam dolores nisi incidunt.</p>
+    </div>
+
+    <div class="fazer-av">
+      <ion-icon name="star-outline"></ion-icon>
+      <p>Fazer uma avaliação</p>
+    </div>
+
+    <h2>Avaliações</h2>
+    <app-card-avaliacao></app-card-avaliacao>
+
+
   </div>
 </ion-content>
