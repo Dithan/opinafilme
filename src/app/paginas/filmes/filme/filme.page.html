@@ -28,34 +28,46 @@
 
     <!-- ABRE O MODAL DE COMENTÁRIO -->
     <div class="fazer-av">
-      <div id="open-modal" expand="block" class="estrela-av"><ion-icon name="star-outline"></ion-icon></div>
+      <div expand="block" (click)="setOpen(true)" class="estrela-av"><ion-icon name="star-outline"></ion-icon></div>
       <p>Fazer uma avaliação</p>
     </div>
 
     <h2 class="titulo-av">Avaliações</h2>
-    <app-card-avaliacao></app-card-avaliacao>
+    <ion-list class="avaliacoes-grid">
+      <app-card-avaliacao *ngFor="let avaliacao of avaliacoes"></app-card-avaliacao>
+    </ion-list>
+
+    <ion-infinite-scroll (ionInfinite)="onIonInfinite($event)">
+      <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
 
   </div>
 
-  <!-- MODAL DE COMENTÁRIO -->
-  <ion-modal trigger="open-modal" [initialBreakpoint]="1" [breakpoints]="[0, 1]">
+  <!-- MODAL -->
+  <ion-modal [isOpen]="isModalOpen" [initialBreakpoint]="1" [breakpoints]="[0, 1]" (ionBackdropTap)="setOpen(false)">
     <ng-template>
-      <div class="block">
-        <div class="filme-titulos">
-          <h1>{{nomeFilme}}</h1>
-          <h2 class="infos">Exemplo: 2024 16 1h90m</h2>
+      <ion-header>
+        <ion-toolbar>
+          <ion-buttons slot="end">
+            <ion-button (click)="setOpen(false)"><ion-icon name="close-outline"></ion-icon></ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+        <div class="block">
+          <div class="filme-titulos">
+            <h1>{{nomeFilme}}</h1>
+            <h2 class="infos">Exemplo: 2024 16 1h90m</h2>
+          </div>
+
+          <form action="">
+            <!-- Estrelas -->
+
+            <ion-textarea label="Escreva sua resenha:" labelPlacement="floating" fill="solid"
+              placeholder="Escreva sua resenha..."></ion-textarea>
+          </form>
         </div>
-
-        <form action="">
-          <!-- Estrelas -->
-
-          <ion-textarea label="Escreva sua resenha:" labelPlacement="floating" fill="solid"
-            placeholder="Escreva sua resenha..."></ion-textarea>
-        </form>
-      </div>
-
-
-
+      </ion-content>
     </ng-template>
   </ion-modal>
 

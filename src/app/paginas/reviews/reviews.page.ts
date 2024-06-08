@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { InfiniteScrollCustomEvent } from '@ionic/angular';
+import { Platform } from '@ionic/angular';
 
 @Component({
   selector: 'app-reviews',
@@ -27,5 +28,28 @@ export class ReviewsPage {
     setTimeout(() => {
       (ev as InfiniteScrollCustomEvent).target.complete();
     }, 500);
+  }
+
+  // MODAL
+  isModalOpen = false;
+
+  setOpen(isOpen: boolean) {
+    this.isModalOpen = isOpen;
+  }
+
+  constructor(private platform: Platform) {
+    this.platform.keyboardDidShow.subscribe(() => {
+      const modalElement = document.querySelector('ion-modal');
+      if (modalElement) {
+        modalElement.classList.add('modal-with-keyboard');
+      }
+    });
+
+    this.platform.keyboardDidHide.subscribe(() => {
+      const modalElement = document.querySelector('ion-modal');
+      if (modalElement) {
+        modalElement.classList.remove('modal-with-keyboard');
+      }
+    });
   }
 }
