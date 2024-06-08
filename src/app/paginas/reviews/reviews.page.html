@@ -43,6 +43,10 @@
           <form action="">
             <!-- Estrelas -->
 
+            <!-- [numStars]="5" define quantas estrelas; [value]="2.5" valor pré definido; [leitura]="true" avaliação não pode ser mudada -->
+            <app-avaliacao-estrelas-review [numStars]="5" [value]="2.5"
+              [leitura]="false"></app-avaliacao-estrelas-review>
+
             <ion-textarea label="Escreva sua resenha:" labelPlacement="floating" fill="solid"
               placeholder="Escreva sua resenha..."></ion-textarea>
           </form>

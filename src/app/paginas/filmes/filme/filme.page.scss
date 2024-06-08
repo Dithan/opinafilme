@@ -171,3 +171,9 @@ ion-modal ion-toolbar {
 ion-modal ion-header {
   box-shadow: none;
 }
+
+ion-modal .modal-button {
+  font-size: 16px;
+  margin: 10px auto 0;
+  text-align: center;
+}

@@ -62,13 +62,15 @@
           correspondem</ion-text>
       </div>
 
-      <!-- BOTÕES APENAS NAVEGAM ENTRE AS PÁGINAS, CRIAR METODO E EXCLUIR ESSE COMENTÁRIO -->
-      <ion-button [disabled]="!confirmasenha" type="submit" shape="round" color="primary">Criar Conta</ion-button>
+
+      <div class="btn-container">
+        <ion-button [disabled]="!confirmasenha" type="submit" shape="round" color="primary">Criar Conta</ion-button>
+
+        <span class="separador-btns">ou</span>
+        
+        <ion-button (click)="signUpWithGoogle()" shape="round" color="primary">Criar Conta com Google</ion-button>
+      </div>
     </form>
 
-    <div class="btn-container">
-      <span class="separador-btns">ou</span>
-      <ion-button (click)="signUpWithGoogle()" shape="round" color="primary">Criar Conta com Google</ion-button>
-    </div>
   </div>
 </ion-content>

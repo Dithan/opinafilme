@@ -1,0 +1,17 @@
+/* Estrelas */
+.ion-rating {
+  text-align: center;
+
+  .ion-rating-container {
+    text-align: center;
+    ion-icon {
+      font-size: 32px;
+      color: gold;
+    }
+  }
+
+  p {
+    text-align: center;
+    margin: 0 0 20px;
+  }
+}

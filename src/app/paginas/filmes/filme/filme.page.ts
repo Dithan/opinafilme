@@ -10,6 +10,7 @@ import { Platform } from '@ionic/angular';
   styleUrls: ['./filme.page.scss'],
 })
 export class FilmePage implements OnInit {
+  // API
   idFilme: string;
   nomeFilme = '';
   posterFilme = '';
@@ -38,6 +39,7 @@ export class FilmePage implements OnInit {
     });
   }
 
+  // API
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
       this.idFilme = params.get('id');

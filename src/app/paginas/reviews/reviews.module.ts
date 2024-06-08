@@ -7,6 +7,7 @@ import { ExploreContainerComponentModule } from '../../explore-container/explore
 
 import { ReviewsPageRoutingModule } from './reviews-routing.module';
 import { CardAvaliacaoReviewComponent } from 'src/app/componentes/card-avaliacao-review/card-avaliacao-review.component';
+import { AvaliacaoEstrelasReviewComponent } from 'src/app/componentes/avaliacao-estrelas-review/avaliacao-estrelas-review.component';
 
 @NgModule({
   imports: [
@@ -16,6 +17,10 @@ import { CardAvaliacaoReviewComponent } from 'src/app/componentes/card-avaliacao
     ExploreContainerComponentModule,
     ReviewsPageRoutingModule,
   ],
-  declarations: [ReviewsPage, CardAvaliacaoReviewComponent],
+  declarations: [
+    ReviewsPage,
+    CardAvaliacaoReviewComponent,
+    AvaliacaoEstrelasReviewComponent,
+  ],
 })
 export class ReviewsPageModule {}

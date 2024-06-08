@@ -8,14 +8,10 @@ import { FilmePageRoutingModule } from './filme-routing.module';
 
 import { FilmePage } from './filme.page';
 import { CardAvaliacaoComponent } from 'src/app/componentes/card-avaliacao/card-avaliacao.component';
+import { AvaliacaoEstrelasComponent } from 'src/app/componentes/avaliacao-estrelas/avaliacao-estrelas.component';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    FilmePageRoutingModule
-  ],
-  declarations: [FilmePage, CardAvaliacaoComponent]
+  imports: [CommonModule, FormsModule, IonicModule, FilmePageRoutingModule],
+  declarations: [FilmePage, CardAvaliacaoComponent, AvaliacaoEstrelasComponent],
 })
 export class FilmePageModule {}
