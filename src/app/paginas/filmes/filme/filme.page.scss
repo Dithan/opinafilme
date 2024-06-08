@@ -4,6 +4,7 @@
     height: 250px;
     padding: 0;
     margin: 0;
+    transition: 0.3s ease-out;
 
     img {
       width: 100%;
@@ -11,4 +12,138 @@
       object-fit: cover;
     }
   }
+
+  .banner.ativa {
+    height: auto;
+  }
+
+  .filme-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding-top: 20px;
+  }
+
+  .filme-titulos {
+    h1 {
+      margin: 0;
+      font-size: 22px;
+      font-weight: bold;
+    }
+
+    .infos {
+      font-size: 14px;
+      margin: 0;
+    }
+  }
+
+  .filme-nota {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    font-size: 14px;
+
+    span {
+      font-size: 16px;
+      font-weight: bold;
+      color: #000;
+    }
+
+    ion-icon {
+      font-size: 22px;
+      color: #eacb1c;
+    }
+  }
+
+  .fazer-av {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 0px;
+    padding: 10px 0 20px;
+
+    .estrela-av {
+      animation: gira-estrela 9s cubic-bezier(0.68, -0.55, 0.27, 1.55) infinite;
+
+      ion-icon {
+        font-size: 32px;
+        color: #eacb1c;
+      }
+    }
+
+    p {
+      margin: 0;
+    }
+  }
+
+  .titulo-av {
+    text-align: center;
+  }
 }
+
+@keyframes gira-estrela {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  10% {
+    transform: rotate(15deg);
+  }
+
+  20% {
+    transform: rotate(0deg);
+  }
+
+  80% {
+    transform: rotate(0deg);
+  }
+
+  90% {
+    transform: rotate(-15deg);
+  }
+
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+// MODAL COMENTÄRIO
+.block {
+  width: 100%;
+  height: auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+
+  .filme-titulos {
+    h1 {
+      margin: 0;
+      font-size: 22px;
+      font-weight: bold;
+    }
+
+    .infos {
+      font-size: 14px;
+      margin: 0;
+    }
+  }
+
+  form {
+    width: 100%;
+  }
+
+  ion-textarea {
+    height: 150px;
+  }
+}
+
+ion-modal {
+  --height: auto;
+}
+

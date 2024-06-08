@@ -2,7 +2,7 @@
 </ion-header>
 
 <ion-content [fullscreen]="true" class="filme-content">
-  <figure class="banner">
+  <figure class="banner" (click)="abreImagem()">
     <img alt="Silhouette of mountains" src="{{posterFilme}}" />
   </figure>
 
@@ -26,14 +26,37 @@
         sequivel, veniam dolores nisi incidunt.</p>
     </div>
 
+    <!-- ABRE O MODAL DE COMENTÁRIO -->
     <div class="fazer-av">
-      <ion-icon name="star-outline"></ion-icon>
+      <div id="open-modal" expand="block" class="estrela-av"><ion-icon name="star-outline"></ion-icon></div>
       <p>Fazer uma avaliação</p>
     </div>
 
-    <h2>Avaliações</h2>
+    <h2 class="titulo-av">Avaliações</h2>
     <app-card-avaliacao></app-card-avaliacao>
 
-
   </div>
+
+  <!-- MODAL DE COMENTÁRIO -->
+  <ion-modal trigger="open-modal" [initialBreakpoint]="1" [breakpoints]="[0, 1]">
+    <ng-template>
+      <div class="block">
+        <div class="filme-titulos">
+          <h1>{{nomeFilme}}</h1>
+          <h2 class="infos">Exemplo: 2024 16 1h90m</h2>
+        </div>
+
+        <form action="">
+          <!-- Estrelas -->
+
+          <ion-textarea label="Escreva sua resenha:" labelPlacement="floating" fill="solid"
+            placeholder="Escreva sua resenha..."></ion-textarea>
+        </form>
+      </div>
+
+
+
+    </ng-template>
+  </ion-modal>
+
 </ion-content>

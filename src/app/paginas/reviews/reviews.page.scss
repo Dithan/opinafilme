@@ -1,0 +1,41 @@
+.reviews-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
+
+// MODAL COMENTÄRIO
+.block {
+  width: 100%;
+  height: auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+
+  .filme-titulos {
+    h1 {
+      margin: 0;
+      font-size: 22px;
+      font-weight: bold;
+    }
+
+    .infos {
+      font-size: 14px;
+      margin: 0;
+    }
+  }
+
+  form {
+    width: 100%;
+  }
+
+  ion-textarea {
+    height: 150px;
+  }
+}
+
+ion-modal {
+  --height: auto;
+}

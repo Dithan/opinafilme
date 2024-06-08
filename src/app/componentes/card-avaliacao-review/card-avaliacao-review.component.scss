@@ -1,4 +1,4 @@
-.card-avaliacao-pesquisa {
+.card-avaliacao-review {
   margin: 0;
   width: 100%;
   height: auto;
@@ -16,6 +16,11 @@
     align-items: center;
     flex-wrap: wrap;
     gap: 10px;
+  }
+
+  .usuario-nome {
+    font-size: 14px;
+    margin: 20px 0 0 0;
   }
 
   ion-card-title {
@@ -42,5 +47,8 @@
   }
 
   .avaliacao-resumo {
+    p {
+      margin: 5px 0 0 0;
+    }
   }
 }

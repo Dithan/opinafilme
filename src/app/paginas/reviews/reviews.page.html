@@ -1,17 +1,45 @@
-<ion-header [translucent]="true">
+<ion-header class="ion-no-border">
   <ion-toolbar>
-    <ion-title>
-      Reviews
-    </ion-title>
+    <ion-buttons slot="primary" slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+
+    <div class="centraliza-titulo">
+      <ion-title class="titulo titulo-header">Meus Rewiews</ion-title>
+    </div>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Reviews</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <div class="container">
+    <ion-list class="reviews-grid">
+      <!-- ABRE O MODAL DE COMENTÁRIO -->
+      <app-card-avaliacao-review id="open-modal" expand="block"
+        *ngFor="let avaliacao of avaliacoes"></app-card-avaliacao-review>
+    </ion-list>
 
-  <app-explore-container name="Reviews page"></app-explore-container>
+    <ion-infinite-scroll (ionInfinite)="onIonInfinite($event)">
+      <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+  </div>
+
+  <!-- MODAL DE COMENTÁRIO -->
+  <ion-modal trigger="open-modal" [initialBreakpoint]="1" [breakpoints]="[0, 1]">
+    <ng-template>
+      <div class="block">
+        <div class="filme-titulos">
+          <h1>{{nomeFilme}}</h1>
+          <h2 class="infos">Exemplo: 2024 16 1h90m</h2>
+        </div>
+
+        <form action="">
+          <!-- Estrelas -->
+
+          <ion-textarea label="Escreva sua resenha:" labelPlacement="floating" fill="solid"
+            placeholder="Escreva sua resenha..."></ion-textarea>
+        </form>
+      </div>
+
+    </ng-template>
+  </ion-modal>
 </ion-content>

@@ -6,6 +6,7 @@ import { ReviewsPage } from './reviews.page';
 import { ExploreContainerComponentModule } from '../../explore-container/explore-container.module';
 
 import { ReviewsPageRoutingModule } from './reviews-routing.module';
+import { CardAvaliacaoReviewComponent } from 'src/app/componentes/card-avaliacao-review/card-avaliacao-review.component';
 
 @NgModule({
   imports: [
@@ -15,6 +16,6 @@ import { ReviewsPageRoutingModule } from './reviews-routing.module';
     ExploreContainerComponentModule,
     ReviewsPageRoutingModule,
   ],
-  declarations: [ReviewsPage],
+  declarations: [ReviewsPage, CardAvaliacaoReviewComponent],
 })
 export class ReviewsPageModule {}
