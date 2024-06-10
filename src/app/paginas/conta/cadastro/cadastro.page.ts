@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { LoadingController, NavController } from '@ionic/angular';
-import { AuthService } from 'src/app/services/auth.service'; // Certifique-se de que o caminho está correto
+import { LoadingController, NavController, ToastController } from '@ionic/angular';
+import { AuthService } from 'src/app/services/auth.service';  // ajuste o caminho conforme necessário
 
 @Component({
   selector: 'app-cadastro',
-  templateUrl: 'cadastro.page.html',
-  styleUrls: ['cadastro.page.scss'],
+  templateUrl: './cadastro.page.html',
+  styleUrls: ['./cadastro.page.scss'],
 })
 export class CadastroPage implements OnInit {
   regForm: FormGroup;
@@ -15,8 +15,9 @@ export class CadastroPage implements OnInit {
   constructor(
     public formBuilder: FormBuilder,
     public loadingCtrl: LoadingController,
-    public navCtrl: NavController,
-    private authService: AuthService // Adiciona o serviço de autenticação
+    private navCtrl: NavController,
+    private authService: AuthService,
+    private toastCtrl: ToastController
   ) {}
 
   ngOnInit() {
@@ -31,7 +32,6 @@ export class CadastroPage implements OnInit {
           Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,}$'),
         ],
       ],
-      // Senha deve conter pelo menos um número, uma letra maiúscula e uma letra minúscula, e no mínimo 8 caracteres ou mais.
       password: [
         '',
         [
@@ -59,20 +59,34 @@ export class CadastroPage implements OnInit {
     const loading = await this.loadingCtrl.create();
     await loading.present();
     if (this.regForm?.valid && this.confirmasenha) {
-      const { email, password } = this.regForm.value;
+      const { email, password, fullname } = this.regForm.value;
       try {
-        await this.authService.register(email, password);
+        await this.authService.register(email, password, fullname);
         this.navCtrl.navigateForward('/tabs/conta');
       } catch (error) {
         console.error('Erro no registro:', error);
-        // Adicione aqui um feedback ao usuário sobre o erro
+        this.showErrorToast('Erro no registro: Verifique suas informações.');
       } finally {
         loading.dismiss();
       }
     } else {
-      console.log('Formulário inválido ou senhas não conferem');
+      console.log('Formulário inválido');
       loading.dismiss();
     }
+  }
+
+  async showErrorToast(message: string) {
+    const toast = await this.toastCtrl.create({
+      message,
+      duration: 2000,
+      position: 'top',
+      color: 'danger'
+    });
+    toast.present();
+  }
+
+  navToLogin() {
+    this.navCtrl.navigateForward('/tabs/conta');
   }
   async signUpWithGoogle() {
     const loading = await this.loadingCtrl.create();
@@ -86,9 +100,5 @@ export class CadastroPage implements OnInit {
     } finally {
       loading.dismiss();
     }
-  }
-  /* APAGAR APÓS FINALIZAR BACKEND FORMULÁRIO -> NAVEGA PARA: MINHACONTA */
-  navToLogin() {
-    this.navCtrl.navigateForward('/tabs/conta');
   }
 }
