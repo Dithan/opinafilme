@@ -1,3 +1,8 @@
+<div
+        *ngIf="updateForm.controls?.['email'].touched && updateForm.controls?.['email'].invalid"
+        style="text-align: left"
+      >
+</div>
 <ion-header class="ion-no-border">
   <ion-toolbar>
     <ion-buttons slot="start">
@@ -12,32 +17,62 @@
 
 <ion-content [fullscreen]="true" class="ion-text-center content-minha-conta">
   <div class="container">
-    <ion-img
-      src="https://media.licdn.com/dms/image/D4D03AQEWIs2_ALZ9NQ/profile-displayphoto-shrink_800_800/0/1676660585606?e=1722470400&v=beta&t=32NmulcEMArfN1KzRRd4nxw-00BEGwrG2TllFgJ2b-U"
-      alt="Thiago Rocha"></ion-img>
+    <form [formGroup]="updateForm" (ngSubmit)="updateUserInfo()">  
 
     <ion-list>
+      
       <ion-item>
-        <ion-input labelPlacement="floating" value="Thiago Rocha">
+        <ion-input labelPlacement="floating" formControlName="fullName">
           <div slot="label">Nome</div>
         </ion-input>
       </ion-item>
+      <div
+        *ngIf="updateForm.controls?.['fullName'].touched && updateForm.controls?.['fullName'].invalid"
+        style="text-align: left"
+      >
+        <ion-text *ngIf="updateForm.controls?.['fullName'].errors?.['required']"
+          >Digite seu nome completo</ion-text
+        >
+      </div>
 
       <ion-item>
-        <ion-input labelPlacement="floating" value="thiago@gmail.com">
+        <ion-input labelPlacement="floating" formControlName="email">
           <div slot="label">E-mail</div>
         </ion-input>
       </ion-item>
+      <div
+        *ngIf="updateForm.controls?.['email'].touched && updateForm.controls?.['email'].invalid"
+        style="text-align: left"
+      >
+        <ion-text *ngIf="updateForm.controls?.['email'].errors?.['required']"
+          >Digite seu e-mail</ion-text
+        >
+        <ion-text *ngIf="updateForm.controls?.['email'].errors?.['email']"
+          >Digite um e-mail válido</ion-text
+        >
+      </div>
 
       <ion-item>
-        <ion-input labelPlacement="floating" value="********">
+        <ion-input labelPlacement="floating" formControlName="password">
           <div slot="label">Senha</div>
         </ion-input>
       </ion-item>
+      <div
+        *ngIf="updateForm.controls?.['password'].touched && updateForm.controls?.['password'].invalid"
+        style="text-align: left"
+      >
+        <ion-text *ngIf="updateForm.controls?.['password'].errors?.['required']"
+          >Digite sua senha</ion-text
+        >
+        <ion-text
+          *ngIf="updateForm.controls?.['password'].errors?.['minlength']"
+          >A senha deve ter pelo menos 6 caracteres</ion-text
+        >
+      </div>
     </ion-list>
+    <ion-button type="submit" shape="round" color="primary">Atualizar Informações</ion-button>
+  </form>  
+  <ion-button  shape="round" color="danger" (click)="logout()">Sair</ion-button>
 
-    <ion-button shape="round" color="primary">Atualizar Dados</ion-button>
   </div>
-
-
 </ion-content>

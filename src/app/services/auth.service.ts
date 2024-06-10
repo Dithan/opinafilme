@@ -28,7 +28,6 @@ export class AuthService {
       const userCredential = await this.afAuth.createUserWithEmailAndPassword(email, password);
       const user = userCredential.user;
       if (user) {
-        // Salvar dados adicionais no Firestore
         await this.firestore.collection('users').doc(user.uid).set({
           email: email,
           fullName: fullName,
@@ -40,11 +39,46 @@ export class AuthService {
     }
   }
 
+
+
+  // Função para obter as informações do usuário
+  async getUserInfo() {
+    const user = await this.afAuth.currentUser;
+    if (user) {
+      const userDoc = await this.firestore.collection('users').doc(user.uid).get().toPromise();
+      return userDoc.data();
+    } else {
+      throw new Error('Usuário não autenticado');
+    }
+  }
+
+  // Função para atualizar o nome, email e senha do usuário
+  async updateUserInfo(fullName: string, email: string, password: string) {
+    const user = await this.afAuth.currentUser;
+    if (user) {
+      // Atualizar nome no Firestore
+      await this.firestore.collection('users').doc(user.uid).update({
+        fullName: fullName,
+      });
+
+      // Atualizar email no Firebase Auth
+      await user.updateEmail(email);
+      // Atualizar senha no Firebase Auth
+      await user.updatePassword(password);
+
+      // Atualizar email no Firestore
+      await this.firestore.collection('users').doc(user.uid).update({
+        email: email,
+      });
+    } else {
+      throw new Error('Usuário não autenticado');
+    }
+  }
+
   // Logout
   async logout() {
     try {
       await this.afAuth.signOut();
-      this.router.navigate(['/login']);
     } catch (error) {
       console.error('Erro no logout: ', error);
     }
