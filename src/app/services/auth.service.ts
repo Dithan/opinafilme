@@ -12,13 +12,14 @@ export class AuthService {
   // Login com email e senha
   async login(email: string, password: string) {
     try {
-      await this.afAuth.signInWithEmailAndPassword(email, password);
-      this.router.navigate(['/minhaconta']);
+      const userCredential = await this.afAuth.signInWithEmailAndPassword(email, password);
+      return userCredential.user;
     } catch (error) {
-      console.error('Erro no login: ', error);
+      throw new Error('Falha na autenticação');
     }
   }
 
+  
   // Registro com email e senha
   async register(email: string, password: string) {
     try {

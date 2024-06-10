@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LoadingController, NavController } from '@ionic/angular';
+import { LoadingController, NavController, ToastController } from '@ionic/angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service'; // Certifique-se de que o caminho está correto
 
@@ -15,7 +15,9 @@ export class ContaPage implements OnInit {
     public formBuilder: FormBuilder,
     public loadingCtrl: LoadingController,
     private navCtrl: NavController,
-    private authService: AuthService // Adiciona o serviço de autenticação
+    private authService: AuthService, // Adiciona o serviço de autenticação
+    private toastCtrl: ToastController
+
   ) {}
 
   ngOnInit() {
@@ -51,11 +53,17 @@ export class ContaPage implements OnInit {
     if (this.loginForm?.valid) {
       const { email, password } = this.loginForm.value;
       try {
-        await this.authService.login(email, password);
-        this.navCtrl.navigateForward('/tabs/conta/minhaconta');
+        const user = await this.authService.login(email, password);
+        if (user) {
+          this.navCtrl.navigateForward('/tabs/conta/minhaconta');
+        } else {
+          this.showErrorToast('Erro no login: Usuário não encontrado.');
+          this.navCtrl.navigateForward('/tabs/conta');
+        }
       } catch (error) {
         console.error('Erro no login:', error);
-        // Adicione aqui um feedback ao usuário sobre o erro
+        this.showErrorToast('Erro no login: Verifique suas credenciais.');
+        this.navCtrl.navigateForward('/tabs/conta');
       } finally {
         loading.dismiss();
       }
@@ -64,13 +72,24 @@ export class ContaPage implements OnInit {
       loading.dismiss();
     }
   }
-
-  /* NAVEGA PARA: MINHA CONTA e CADASTRO */
-  navToMinhaConta() {
-    this.navCtrl.navigateForward('/tabs/conta/minhaconta');
+  async showErrorToast(message: string) {
+    const toast = await this.toastCtrl.create({
+      message,
+      duration: 2000,
+      position: 'top',
+      color: 'danger'
+    });
+    toast.present();
   }
-
+  
   navToCadastro() {
     this.navCtrl.navigateForward('/tabs/conta/cadastro');
   }
 }
+
+  /* NAVEGA PARA: MINHA CONTA e CADASTRO */
+  // navToMinhaConta() {
+  //   this.navCtrl.navigateForward('/tabs/conta/minhaconta');
+  // }
+
+
