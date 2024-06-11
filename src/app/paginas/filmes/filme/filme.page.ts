@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ApiIdService } from 'src/app/services/api-id.service';
-import { InfiniteScrollCustomEvent } from '@ionic/angular';
+import { InfiniteScrollCustomEvent, ToastController } from '@ionic/angular';
 import { Platform } from '@ionic/angular';
 
 @Component({
@@ -10,20 +10,20 @@ import { Platform } from '@ionic/angular';
   styleUrls: ['./filme.page.scss'],
 })
 export class FilmePage implements OnInit {
-  // API
   idFilme: string;
   nomeFilme = '';
   posterFilme = '';
-
-  // Scroll Infinito
   avaliacoes: any = [];
+  isModalOpen = false;
+  estrelas: number = 0;
+  comentario: string = '';
 
   constructor(
     private route: ActivatedRoute,
     private apiserviceId: ApiIdService,
-    private platform: Platform
+    private platform: Platform,
+    private toastController: ToastController
   ) {
-    // MODAL AVALIAÇÃO
     this.platform.keyboardDidShow.subscribe(() => {
       const modalElement = document.querySelector('ion-modal');
       if (modalElement) {
@@ -39,7 +39,6 @@ export class FilmePage implements OnInit {
     });
   }
 
-  // API
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
       this.idFilme = params.get('id');
@@ -48,21 +47,16 @@ export class FilmePage implements OnInit {
         this.posterFilme = data.images[0].href;
       });
     });
-
     this.gerarAvaliacoes();
   }
 
   abreImagem() {
     let banner = document.querySelector('.banner');
-
     banner.classList.toggle('ativa');
   }
 
-  //Scroll Infinito
-  /* Carrega 5 avaliacoes por vez, quando scroll, carrega mais 5 (alterar no for) */
   private gerarAvaliacoes() {
     const count = this.avaliacoes.length + 1;
-    // Alterar offset aqui (i < 5)
     for (let i = 0; i < 5; i++) {
       this.avaliacoes.push(`Item ${count + i}`);
     }
@@ -75,10 +69,44 @@ export class FilmePage implements OnInit {
     }, 500);
   }
 
-  // MODAL
-  isModalOpen = false;
-
   setOpen(isOpen: boolean) {
     this.isModalOpen = isOpen;
+  }
+
+  onEstrelasClick(estrelas: number) {
+    this.estrelas = estrelas;
+  }
+
+  async enviarAvaliacao() {
+    if (!this.comentario) {
+      const toast = await this.toastController.create({
+        message: 'Por favor, escreva um comentário.',
+        duration: 2000,
+        color: 'danger'
+      });
+      await toast.present();
+      return;
+    }
+
+    try {
+      await this.apiserviceId.addAvaliacao(this.idFilme, this.estrelas, this.comentario);
+      const toast = await this.toastController.create({
+        message: 'Avaliação enviada com sucesso!',
+        duration: 2000,
+        color: 'success'
+      });
+      await toast.present();
+      this.setOpen(false);
+      this.comentario = '';
+      this.estrelas = 0;
+    } catch (error) {
+      const toast = await this.toastController.create({
+        message: 'Erro ao enviar avaliação. Por favor, tente novamente.',
+        duration: 2000,
+        color: 'danger'
+      });
+      await toast.present();
+      console.error('Erro ao enviar avaliação:', error);
+    }
   }
 }

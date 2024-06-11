@@ -8,12 +8,10 @@
 
   <div class="container">
     <div class="filme-header">
-
       <div class="filme-titulos">
         <h1>{{nomeFilme}}</h1>
         <h2 class="infos">Exemplo: 2024 16 1h90m</h2>
       </div>
-
       <div class="filme-nota">
         <ion-icon name="star"></ion-icon>
         <div class="nota">Ex: <span>4.5</span>/5.0</div>
@@ -40,7 +38,6 @@
     <ion-infinite-scroll (ionInfinite)="onIonInfinite($event)">
       <ion-infinite-scroll-content></ion-infinite-scroll-content>
     </ion-infinite-scroll>
-
   </div>
 
   <!-- MODAL -->
@@ -60,22 +57,18 @@
             <h2 class="infos">Exemplo: 2024 16 1h90m</h2>
           </div>
 
-          <form action="">
+          <form (ngSubmit)="enviarAvaliacao()">
             <!-- Estrelas -->
+            <app-avaliacao-estrelas [numStars]="5" [value]="2.5" [leitura]="false" (ionClick)="onEstrelasClick($event)"></app-avaliacao-estrelas>
 
-            <!-- [numStars]="5" define quantas estrelas; [value]="2.5" valor pré definido; [leitura]="true" avaliação não pode ser mudada -->
-            <app-avaliacao-estrelas [numStars]="5" [value]="2.5" [leitura]="false"></app-avaliacao-estrelas>
-
-            <ion-textarea label="Escreva sua resenha:" labelPlacement="floating" fill="solid"
-              placeholder="Escreva sua resenha..."></ion-textarea>
+            <ion-textarea label="Escreva sua resenha:" labelPlacement="floating" fill="solid" [(ngModel)]="comentario" name="comentario" placeholder="Escreva sua resenha..."></ion-textarea>
 
             <div class="modal-button">
-              <ion-button class="modal-button" shape="round" color="primary">Enviar</ion-button>
+              <ion-button type="submit" class="modal-button" shape="round" color="primary">Enviar</ion-button>
             </div>
           </form>
         </div>
       </ion-content>
     </ng-template>
   </ion-modal>
-
 </ion-content>

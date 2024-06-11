@@ -1,12 +1,11 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, AfterViewInit } from '@angular/core';
 
 @Component({
   selector: 'app-avaliacao-estrelas',
   templateUrl: './avaliacao-estrelas.component.html',
   styleUrls: ['./avaliacao-estrelas.component.scss'],
 })
-export class AvaliacaoEstrelasComponent implements OnInit {
-  // Avaliação de Estrelas
+export class AvaliacaoEstrelasComponent implements AfterViewInit {
   @Input() numStars: number = 5;
   @Input() value: number = 2.5;
   @Input() leitura: boolean = false;
@@ -17,7 +16,6 @@ export class AvaliacaoEstrelasComponent implements OnInit {
 
   constructor() {}
 
-  // Avaliação de Estrelas
   ngAfterViewInit() {
     this.calc();
   }
@@ -41,11 +39,7 @@ export class AvaliacaoEstrelasComponent implements OnInit {
       this.value = index + 1;
       this.ionClick.emit(this.value);
       this.calc();
-
-      /* AQUI ESTÁ O VALOR DA NOTA DADA PELO USUÁRIO = this.value */
-      console.log(this.value);
+      console.log(this.value); // AQUI ESTÁ O VALOR DA NOTA DADA PELO USUÁRIO = this.value
     }
   }
-
-  ngOnInit() {}
 }
