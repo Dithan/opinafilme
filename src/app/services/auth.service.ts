@@ -79,6 +79,8 @@ export class AuthService {
   async logout() {
     try {
       await this.afAuth.signOut();
+      this.router.navigate(['/tabs/filmes']);
+
     } catch (error) {
       console.error('Erro no logout: ', error);
     }

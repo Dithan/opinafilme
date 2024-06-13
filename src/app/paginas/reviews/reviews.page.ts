@@ -1,55 +1,50 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { InfiniteScrollCustomEvent } from '@ionic/angular';
-import { Platform } from '@ionic/angular';
+import { ReviewService } from 'src/app/services/review.service';
 
 @Component({
   selector: 'app-reviews',
   templateUrl: 'reviews.page.html',
   styleUrls: ['reviews.page.scss'],
 })
-export class ReviewsPage {
-  avaliacoes: any = [];
+export class ReviewsPage implements OnInit {
+  avaliacoes: any[] = [];
+  userInfo: any;
+  isModalOpen = false;
+  batchSize = 5; // Tamanho do lote
+  currentBatch = 0; // Lote atual
+
+  constructor(private reviewService: ReviewService) {}
 
   ngOnInit() {
-    this.gerarAvaliacoes();
+    this.loadUserReviews();
   }
 
-  /* Carrega 5 avaliacoes por vez, quando scroll, carrega mais 5 (alterar no for) */
-  private gerarAvaliacoes() {
-    const count = this.avaliacoes.length + 1;
-    // Alterar offset aqui (i < 5)
-    for (let i = 0; i < 5; i++) {
-      this.avaliacoes.push(`Item ${count + i}`);
+  async loadUserReviews() {
+    try {
+      this.userInfo = await this.reviewService.getUserReviews();
+      this.loadMoreReviews();
+    } catch (error) {
+      console.error('Erro ao carregar informações do usuário:', error);
     }
   }
 
+  loadMoreReviews() {
+    const startIndex = this.currentBatch * this.batchSize;
+    const endIndex = startIndex + this.batchSize;
+    const moreReviews = this.userInfo.reviews.slice(startIndex, endIndex);
+    this.avaliacoes.push(...moreReviews);
+    this.currentBatch++;
+  }
+
   onIonInfinite(ev: any) {
-    this.gerarAvaliacoes();
+    this.loadMoreReviews();
     setTimeout(() => {
       (ev as InfiniteScrollCustomEvent).target.complete();
     }, 500);
   }
 
-  // MODAL
-  isModalOpen = false;
-
   setOpen(isOpen: boolean) {
     this.isModalOpen = isOpen;
-  }
-
-  constructor(private platform: Platform) {
-    this.platform.keyboardDidShow.subscribe(() => {
-      const modalElement = document.querySelector('ion-modal');
-      if (modalElement) {
-        modalElement.classList.add('modal-with-keyboard');
-      }
-    });
-
-    this.platform.keyboardDidHide.subscribe(() => {
-      const modalElement = document.querySelector('ion-modal');
-      if (modalElement) {
-        modalElement.classList.remove('modal-with-keyboard');
-      }
-    });
   }
 }
