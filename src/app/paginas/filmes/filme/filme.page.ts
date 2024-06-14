@@ -13,6 +13,11 @@ export class FilmePage implements OnInit {
   idFilme: string;
   nomeFilme = '';
   posterFilme = '';
+  yearMovie=''
+  Rated=''
+  Runtime=''
+  Plot=''
+  Metascore=''
   avaliacoes: any = [];
   isModalOpen = false;
   estrelas: number = 0;
@@ -43,8 +48,13 @@ export class FilmePage implements OnInit {
     this.route.paramMap.subscribe((params) => {
       this.idFilme = params.get('id');
       this.apiserviceId.getDadosDaAPIId(this.idFilme).subscribe((data) => {
-        this.nomeFilme = data.name;
-        this.posterFilme = data.images[0].href;
+        this.nomeFilme = data.Title;
+        this.posterFilme = data.Poster;
+        this.yearMovie= data.Year
+        this.Rated= data.Rated
+        this.Runtime= data.Runtime
+        this.Plot= data.Plot
+        this.Metascore= data.Ratings[0].Value
       });
     });
     this.gerarAvaliacoes();

@@ -1,17 +1,28 @@
 <ion-header class="ion-no-border pesquisa-header">
   <ion-toolbar>
-    <ion-searchbar placeholder="Pesquise um Filme" (ionInput)="onSearch($event)"></ion-searchbar>
+    <ion-searchbar 
+      placeholder="Pesquise um Filme" 
+      [debounce]="1000"
+      (ionInput)="handleInput($event)">
+    </ion-searchbar>
+    <ion-button (click)="onSearch()">Pesquisar</ion-button>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true" class="pesquisa-content">
   <div class="container">
     <ion-list class="pesquisa-grid">
-      <app-card-filme-pesquisa *ngFor="let filme of filmes" ></app-card-filme-pesquisa>
+      <ion-item *ngFor="let result of results" (click)="onMovieClick(result.Title, result.imdbID)">
+        <ion-label>{{ result.Title }}</ion-label>
+      </ion-item>
     </ion-list>
-
+  <app-card-filme-pesquisa *ngFor="let filme of filmes" [filme]="filme"></app-card-filme-pesquisa>
     <ion-infinite-scroll (ionInfinite)="onIonInfinite($event)">
       <ion-infinite-scroll-content></ion-infinite-scroll-content>
     </ion-infinite-scroll>
   </div>
 </ion-content>
+
+
+
+  

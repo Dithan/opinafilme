@@ -10,18 +10,18 @@
     <div class="filme-header">
       <div class="filme-titulos">
         <h1>{{nomeFilme}}</h1>
-        <h2 class="infos">Exemplo: 2024 16 1h90m</h2>
+        <h2 class="infos">Year : {{yearMovie}}</h2>
+        <h2 class="infos">Rated : {{Rated}} {{Runtime}}</h2>
+        <h2 class="infos">RunTime : {{Runtime}}</h2>
       </div>
       <div class="filme-nota">
         <ion-icon name="star"></ion-icon>
-        <div class="nota">Ex: <span>4.5</span>/5.0</div>
+        Internet Movie Database <div class="nota"><span>{{Metascore}}</span></div>
       </div>
     </div>
 
     <div class="filme-sinopse">
-      <p>Exemplo: Lorem ipsum dolor sit, amet consectetur adipisicing elit. Deserunt quis
-        voluptatem, natus dolorem amet consequatur voluptates omnis eveniet deleniti. Adipisci rerum nemo sint velit
-        sequivel, veniam dolores nisi incidunt.</p>
+      <p>{{Plot}}</p>
     </div>
 
     <!-- ABRE O MODAL DE COMENTÁRIO -->
@@ -54,7 +54,7 @@
         <div class="block">
           <div class="filme-titulos">
             <h1>{{nomeFilme}}</h1>
-            <h2 class="infos">Exemplo: 2024 16 1h90m</h2>
+            <h2 class="infos">{{yearMovie}} {{Rated}} {{Runtime}}</h2>
           </div>
 
           <form (ngSubmit)="enviarAvaliacao()">

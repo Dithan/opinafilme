@@ -11,17 +11,21 @@ export class CardFilmePesquisaComponent  implements OnInit {
   constructor(public navCtrl: NavController, private apiService: ApiService) {}
 
   nomeFilme :string;
-  posterFilme :string;
+  posterFilme :any;
   idFilme :string
-  bioFilme :string
+  yearMovie:string
   ngOnInit(): void {
     this.apiService.getDadosDaAPI().subscribe((data) => {
-      this.idFilme = data.id;
-      this.bioFilme = data.descriptions[1].description;
+      this.idFilme = data.Search[0].imdbID;
 
-      this.nomeFilme = data.name;
+      this.nomeFilme = data.Search[0].Title;
 
-      this.posterFilme = data.images[0].href;
+      this.posterFilme = data.Search[0].Poster;
+
+      this.yearMovie = data.Search[0].Year
+      if(this.posterFilme == "N/A"){
+        this.posterFilme = false
+      }
     });
   }
 

@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { environment } from '../../environments/environment';
+
 interface Avaliacao {
   id: string;
   estrelas: number;
@@ -23,7 +25,10 @@ export class ApiIdService {
  
 
   getDadosDaAPIId(idfilme : string): Observable<any> {
-    return this.http.get(`https://digi-api.com/api/v1/digimon/${idfilme}`);
+    return this.http.get(`https://www.omdbapi.com/?apikey=${environment.apikey}&i=${idfilme}`);
+  }
+  getDadosDaAPIName(namefilme : string): Observable<any> {
+    return this.http.get(`https://www.omdbapi.com/?apikey=${environment.apikey}&s=${namefilme}`);
   }
   
   async addAvaliacao(filmeId: string, estrelas: number, comentario: string) {

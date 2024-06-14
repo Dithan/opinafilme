@@ -10,15 +10,22 @@ import { ApiService } from 'src/app/services/api.service';
 export class CardFilmeComponent implements OnInit {
   constructor(public navCtrl: NavController, private apiService: ApiService) {}
   nomeFilme = '';
-  posterFilme = '';
+  posterFilme : any;
   idFilme = ''
+  yearMovie = ''
   ngOnInit(): void {
     this.apiService.getDadosDaAPI().subscribe((data) => {
-      this.idFilme = data.id;
+      this.idFilme = data.Search[0].imdbID;
 
-      this.nomeFilme = data.name;
+      this.nomeFilme = data.Search[0].Title;
 
-      this.posterFilme = data.images[0].href;
+      this.posterFilme = data.Search[0].Poster;
+
+      this.yearMovie = data.Search[0].Year
+      
+      if(this.posterFilme == "N/A"){
+        this.posterFilme = false
+      }
     });
   }
 
