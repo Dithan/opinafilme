@@ -2,8 +2,9 @@
 </ion-header>
 
 <ion-content [fullscreen]="true" class="filme-content">
-  <figure class="banner" (click)="abreImagem()">
-    <img alt="Silhouette of mountains" src="{{posterFilme}}" />
+  <figure class="banner" (click)="abreImagem()" >
+    <img *ngIf="posterFilme != 'N/A'" alt="{{nomeFilme}}" src="{{posterFilme}}" />
+    <img *ngIf="posterFilme == 'N/A'" src="../../../assets/imagens/imagem-indisponivel.jpg" alt="{{nomeFilme}}">
   </figure>
 
   <div class="container">
@@ -27,7 +28,7 @@
       <div expand="block" (click)="setOpen(true)" class="estrela-av"><ion-icon name="star-outline"></ion-icon></div>
       <p>Fazer uma avaliação</p>
     </div>
-<!--
+    <!--
     <h2 class="titulo-av">Avaliações</h2>
     <ion-list class="avaliacoes-grid">
       <app-card-avaliacao *ngFor="let avaliacao of avaliacoes"></app-card-avaliacao>
@@ -57,9 +58,11 @@
 
           <form (ngSubmit)="enviarAvaliacao()">
             <!-- Estrelas -->
-            <app-avaliacao-estrelas [numStars]="5" [value]="2.5" [leitura]="false" (ionClick)="onEstrelasClick($event)"></app-avaliacao-estrelas>
+            <app-avaliacao-estrelas [numStars]="5" [value]="2.5" [leitura]="false"
+              (ionClick)="onEstrelasClick($event)"></app-avaliacao-estrelas>
 
-            <ion-textarea label="Escreva sua resenha:" labelPlacement="floating" fill="solid" [(ngModel)]="comentario" name="comentario" placeholder="Escreva sua resenha..."></ion-textarea>
+            <ion-textarea label="Escreva sua resenha:" labelPlacement="floating" fill="solid" [(ngModel)]="comentario"
+              name="comentario" placeholder="Escreva sua resenha..."></ion-textarea>
 
             <div class="modal-button">
               <ion-button type="submit" class="modal-button" shape="round" color="primary">Enviar</ion-button>
