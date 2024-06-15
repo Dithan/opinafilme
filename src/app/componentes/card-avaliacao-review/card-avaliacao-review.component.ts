@@ -20,7 +20,7 @@ export class CardAvaliacaoReviewComponent implements OnInit {
   loadMovieName() {
     if (this.review && this.review.id) {
       this.apiServiceId.getDadosDaAPIId(this.review.id).subscribe((data) => {
-        this.nomeFilme = data.name; // Atualiza o nome do filme com o dado obtido da API
+        this.nomeFilme = data.Title; // Atualiza o nome do filme com o dado obtido da API
       });
     }
   }
