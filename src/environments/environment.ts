@@ -5,16 +5,16 @@
 export const environment = {
   production: true,
   firebaseConfig: {
-    apiKey: "",
-  authDomain: "",
-  databaseURL: "",
-  projectId: "",
-  storageBucket: "",
-  messagingSenderId: "",
-  appId: "",
-  measurementId: ""
+    apiKey: '6ac68465&i',
+    authDomain: '',
+    databaseURL: '',
+    projectId: '',
+    storageBucket: '',
+    messagingSenderId: '',
+    appId: '',
+    measurementId: '',
   },
-  apikey:""
+  apikey: '6ac68465&i',
 };
 /*
  * For easier debugging in development mode, you can import the following file

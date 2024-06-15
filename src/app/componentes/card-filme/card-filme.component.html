@@ -1,13 +1,12 @@
 <ion-card class="card-filme" (click)="navToFilme(idFilme)">
-  <div *ngIf="posterFilme" >
-    <img alt="Silhouette of mountains"
-    src="{{posterFilme}}" />
+  <div *ngIf="posterFilme">
+    <img alt="{{nomeFilme}}" src="{{posterFilme}}" />
   </div>
   <div *ngIf="!posterFilme">
-    <p style="text-align: center;">Imagem Indisponível.</p>
+    <img src="../../../assets/imagens/imagem-indisponivel.jpg" alt="{{nomeFilme}}">
   </div>
   <div class="filmes-card-content">
-     <ion-card-subtitle>Year : {{yearMovie}}</ion-card-subtitle> 
+    <ion-card-subtitle>{{yearMovie}}</ion-card-subtitle>
     <ion-card-title>{{nomeFilme}}</ion-card-title>
   </div>
 </ion-card>

@@ -4,11 +4,11 @@
     src="{{posterFilme}}" />
   </div>
   <div *ngIf="!posterFilme">
-    <p style="text-align: center;">Imagem Indisponível.</p>
+    <img src="../../../assets/imagens/imagem-indisponivel.jpg" alt="{{nomeFilme}}">
   </div>
   <div class="filmes-card-content">
     <ion-card-title>{{nomeFilme}}</ion-card-title>
     <div class="filme-detalhe">{{yearMovie}}</div>
-    
+
   </div>
 </ion-card>

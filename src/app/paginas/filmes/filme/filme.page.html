@@ -10,13 +10,11 @@
     <div class="filme-header">
       <div class="filme-titulos">
         <h1>{{nomeFilme}}</h1>
-        <h2 class="infos">Year : {{yearMovie}}</h2>
-        <h2 class="infos">Rated : {{Rated}} {{Runtime}}</h2>
-        <h2 class="infos">RunTime : {{Runtime}}</h2>
+        <h2 class="infos">{{yearMovie}} | {{Rated}} | {{Runtime}}</h2>
       </div>
       <div class="filme-nota">
         <ion-icon name="star"></ion-icon>
-        Internet Movie Database <div class="nota"><span>{{Metascore}}</span></div>
+        <div class="nota"><span>{{Metascore}}</span></div>
       </div>
     </div>
 
@@ -29,7 +27,7 @@
       <div expand="block" (click)="setOpen(true)" class="estrela-av"><ion-icon name="star-outline"></ion-icon></div>
       <p>Fazer uma avaliação</p>
     </div>
-<!-- 
+<!--
     <h2 class="titulo-av">Avaliações</h2>
     <ion-list class="avaliacoes-grid">
       <app-card-avaliacao *ngFor="let avaliacao of avaliacoes"></app-card-avaliacao>
